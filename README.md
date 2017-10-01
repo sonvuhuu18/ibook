@@ -12,3 +12,4 @@ git checkout <branch> #<branch> là nhánh mà anh em đang làm
 git rebabse develop #Có thể conflict ở đây, anh em tự sửa nhé ;)
 ```
 À với cả đừng merge luôn vào develop nhé tạo pull request xong gửi t check trước :))
+
