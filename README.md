@@ -1,24 +1,13 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Cách cài đặt :)
+```
+git clone git@github.com:sonvuhuu18/ibook.git
+git checkout -b develop
+git pull origin develop
+```
+Xong anh em muốn code cái gì mới thì trước hết là pull code mới nhất từ origin/develop về nhé, làm như sau:
+```
+git checkout develop #Nếu đang ở branch khác
+git pull origin develop 
+git checkout <branch> #<branch> là nhánh mà anh em đang làm
+git rebabse develop #Có thể conflict ở đây, anh em tự sửa nhé ;)
+```
