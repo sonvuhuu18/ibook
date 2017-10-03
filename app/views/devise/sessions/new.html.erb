@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"form-size"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"form-size transparent-white"}) do |f| %>
   <h2>Sign in</h2>
   <div class="form-group">
     <%= f.label :email %><br />
@@ -19,8 +19,13 @@
 
   <div class="actions">
     <%= f.submit "Sign in", class:"btn btn-success" %>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class:"btn btn-link" %><br />
+    <% end -%>
   </div>
-  <div class="devise-shared">
-    <%= render "devise/shared/links" %>
-  </div>
+  
+ 
 <% end %>
+<div class="devise-shared form-size transparent-white">
+  <%= render "devise/shared/links" %>
+</div>

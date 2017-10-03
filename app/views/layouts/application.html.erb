@@ -24,6 +24,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <ul class="navbar-nav ml-auto">
+      <% if current_user%>
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
       </li>
@@ -33,6 +34,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/categories">Categories</a>
       </li>
+      <% end %>
       &nbsp;
       <li class="nav-item" id="user-nav-item">
         <% if current_user%>
