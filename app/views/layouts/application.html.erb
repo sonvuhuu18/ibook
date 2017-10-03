@@ -3,6 +3,7 @@
   <head>
     <title>iBook</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -19,24 +20,31 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    &nbsp;
+    <form class="form-inline ">
+      <div class="input-group">
+      <input class="form-control " type="text" placeholder="Search" aria-label="Search">
+      <span class="input-group-btn">
+      <button class="btn btn-outline-success " type="submit">Search</button>
+      </span>
+      </div>
     </form>
+
     <ul class="navbar-nav ml-auto">
+      &nbsp;
       <% if current_user%>
-      <li class="nav-item">
+      <li class="nav-item ml-auto">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item ml-auto">
         <a class="nav-link" href="/books">Books</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item ml-auto">
         <a class="nav-link" href="/categories">Categories</a>
       </li>
       <% end %>
       &nbsp;
-      <li class="nav-item" id="user-nav-item">
+      <li class="nav-item ml-auto" id="user-nav-item">
         <% if current_user%>
           <a class="btn btn-light" role=button href="/users/edit"><img src="https://openclipart.org/download/247319/abstract-user-flat-3.svg" width="18" height="18" alt=""> <strong><%= current_user.nickname %></strong></a>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-light"%>
@@ -45,7 +53,9 @@
           <%= link_to "Sign in", new_session_path(resource_name), class:"btn btn-outline-primary" %>
         <% end %>
       </li>
+      &nbsp;
     </ul>
+
   </div>
 </nav>
 <div class="content-body">

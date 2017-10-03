@@ -6,7 +6,11 @@ body {
 }
 
 .content-body {
-    margin: 15px;
+    margin: 20px;
+}
+
+.content-inside {
+    padding: 15px;
 }
 
 .transparent-white {
@@ -24,3 +28,12 @@ body {
 .devise-shared {
     margin: 15px auto;
 }
+
+.card-margin {
+    margin: 8px;
+}
+
+.card-anchor:hover {
+    text-decoration: none;
+}
+
