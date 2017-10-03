@@ -1,2 +1,6 @@
-Hi, <%= current_user.nickname%>,
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<div class="jumbotron">
+  <h1 class="display-4">Hello, <strong><%= current_user.nickname%></strong></h1>
+  <p class="lead">Welcome to <strong><img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Gray_book.png" width="30" height="30" alt=""> iBook</strong></p>
+  <hr class="my-4">
+  <p>Book reviews from around the world.</p>
+</div>
