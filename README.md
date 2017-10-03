@@ -1,6 +1,7 @@
 ## Cách cài đặt :)
 ```
 git clone git@github.com:sonvuhuu18/ibook.git
+cd ibook
 git checkout -b develop
 git pull origin develop
 ```
