@@ -3,14 +3,19 @@
 body {
     background-image: url("https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg");
     background-repeat: repeat;
+    background-attachment: fixed;
+    font-family: 'Noto Serif', serif;
 }
 
 .content-body {
-    margin: 20px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .content-inside {
     padding: 15px;
+    margin-bottom: 80px;
 }
 
 .transparent-white {
@@ -40,7 +45,7 @@ body {
 .action-panel {
     position: fixed;
     bottom: 0px;
-    left: 0px;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     padding: 10px;
 }

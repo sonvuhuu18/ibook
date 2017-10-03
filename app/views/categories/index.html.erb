@@ -1,4 +1,4 @@
-<div class="content-inside transparent-white">
+<div class="content-inside">
 <!--<p id="notice"><%= notice %></p>-->
 
 <h1>Categories</h1>
@@ -7,7 +7,7 @@
   
     <% @categories.each do |category| %>
        <div class="col-sm-6 col-md-3">
-        <div class="card card-margin">
+        <div class="card card-margin border-secondary">
           <a class="card-anchor" href="/categories/<%= category.id%>">
           <img class="card-img-top" src="http://waynehastings.com/wp-content/uploads/2014/11/book_category.jpg" alt="Books image">
           <div class="card-body">

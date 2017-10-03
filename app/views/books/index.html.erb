@@ -1,4 +1,4 @@
-<div class="content-inside transparent-white">
+<div class="content-inside">
 <!--<p id="notice"><%= notice %></p>-->
 
 <h1>Books</h1>
@@ -9,7 +9,7 @@
 <div class="row">
     <% @books.each do |book| %>
       <div class="col-sm-6 col-md-3">
-        <div class="card card-margin">
+        <div class="card card-margin border-secondary">
           <a class="card-anchor" href="/books/<%= book.id%>">
             <img class="card-img-top" src="http://4.darkroom.stylist.co.uk/980/14a54a22c321c8968559825625c2def5:b6a41ec79d439f19d31111577dacf6dd/books.jpg" alt="Books image">
             <div class="card-body">
