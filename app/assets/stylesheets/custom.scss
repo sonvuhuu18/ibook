@@ -14,7 +14,7 @@ body {
 }
 
 .transparent-white {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .form-size {
@@ -37,3 +37,10 @@ body {
     text-decoration: none;
 }
 
+.action-panel {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 10px;
+}
