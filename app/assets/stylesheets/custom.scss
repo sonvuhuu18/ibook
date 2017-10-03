@@ -1,4 +1,17 @@
 @import "bootstrap";
-.content-body{
+
+.content-body {
     margin: 15px;
+}
+
+.form-size {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px
+}
+
+.devise-shared {
+    margin: 15px 0px;
 }
