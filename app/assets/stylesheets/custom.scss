@@ -1,1 +1,51 @@
 @import "bootstrap";
+
+body {
+    background-image: url("https://image.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    font-family: 'Noto Serif', serif;
+}
+
+.content-body {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.content-inside {
+    padding: 15px;
+    margin-bottom: 80px;
+}
+
+.transparent-white {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.form-size {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px
+}
+
+.devise-shared {
+    margin: 15px auto;
+}
+
+.card-margin {
+    margin: 8px;
+}
+
+.card-anchor:hover {
+    text-decoration: none;
+}
+
+.action-panel {
+    position: fixed;
+    bottom: 0px;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}

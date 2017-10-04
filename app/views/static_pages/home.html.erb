@@ -1,2 +1,35 @@
-Hi, <%= current_user.nickname%>,
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<div class="content-inside transparent-white">
+  <h1 class="display-4">Hello, <strong><%= current_user.nickname%></strong></h1>
+  <p class="lead">Welcome to <strong>iBook</strong></p>
+  <hr class="my-4">
+
+
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <a class="card card-anchor card-margin" href="/books">
+    <img class="card-img-top" src="http://4.darkroom.stylist.co.uk/980/14a54a22c321c8968559825625c2def5:b6a41ec79d439f19d31111577dacf6dd/books.jpg" alt="Books image">
+    <div class="card-body">
+      <h4 class="card-title">Books</h4>
+      <p class="card-text">Browse Books</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">You can browse all the books by title here</small>
+    </div>
+  </a>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <a class="card card-anchor card-margin" href="/categories">
+    <img class="card-img-top" src="http://waynehastings.com/wp-content/uploads/2014/11/book_category.jpg" alt="Categories image">
+    <div class="card-body">
+      <h4 class="card-title">Categories</h4>
+      <p class="card-text">Browse categories</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">You can browse the book categories here</small>
+    </div>
+  </a>
+  </div>
+</div>
+  
+</div>
+</div>
