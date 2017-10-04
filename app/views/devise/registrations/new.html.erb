@@ -1,4 +1,5 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class:"form-size transparent-white"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+  html: {class: "form-size transparent-white", multipart: true}) do |f| %>
   <h2>Sign up</h2>
   <div class="form-group">
     <%= f.label :email %><br />
@@ -8,6 +9,12 @@
   <div class="form-group">
     <%= f.label :nickname %><br />
     <%= f.text_field :nickname, class: "form-control", autocomplete: "off" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
   </div>
 
   <div class="form-group">
@@ -24,11 +31,11 @@
   </div>
 
   <%= devise_error_messages! %>
-  
+
   <div class="actions">
     <%= f.submit "Sign up", class:"btn btn-success" %>
   </div>
- 
+
 <% end %>
 <div class="devise-shared form-size transparent-white">
   <%= render "devise/shared/links" %>
