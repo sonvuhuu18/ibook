@@ -8,6 +8,9 @@ class Book < ApplicationRecord
   validates :public_year, inclusion: 1800..2100
   validate :has_categories
   mount_uploader :cover, BookCoverUploader
+  validates_presence_of :cover
+  validates_integrity_of :cover
+  validates_processing_of :cover
 
   private
 
