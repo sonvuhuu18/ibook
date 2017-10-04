@@ -11,6 +11,7 @@ body {
     width: 80%;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .content-inside {
@@ -45,7 +46,7 @@ body {
 .action-panel {
     position: fixed;
     bottom: 0px;
-    width: 80%;
-    margin: auto;
+    left: 0px;
+    width: 100%;
     padding: 10px;
 }
