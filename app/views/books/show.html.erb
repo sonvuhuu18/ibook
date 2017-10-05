@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="form-size transparent-white">
 
 <p>
   <strong>Title:</strong>
@@ -19,6 +19,9 @@
   <strong>User:</strong>
   <%= @book.user.nickname %>
 </p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<% unless notice.to_s.strip.empty? %>
+<p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
+<%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
+<%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
+</div>

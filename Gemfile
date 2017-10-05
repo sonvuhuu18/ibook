@@ -18,6 +18,12 @@ gem 'devise'
 gem 'bootstrap'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'config'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
