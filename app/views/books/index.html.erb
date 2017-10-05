@@ -9,7 +9,7 @@
 <div class="row">
     <% @books.each do |book| %>
       <div class="col-sm-6 col-md-3">
-        <div class="card card-margin border-secondary">
+        <div class="card card-margin">
           <a class="card-anchor" href="/books/<%= book.id%>">
             <% if book.cover.present? %>
               <%= image_tag(book.cover.url, class: "card-img-top")%>
