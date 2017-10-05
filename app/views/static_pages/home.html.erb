@@ -1,12 +1,9 @@
 <% unless notice.to_s.strip.empty?%>
   <p id="notice" class="form-size alert alert-info"><%= notice %></p>
   <% end %>
-<div class="content-inside transparent-white">
-  <h1 class="display-4">Hello, <strong><%= current_user.nickname%></strong></h1>
-  <p class="lead">Welcome to <strong>iBook</strong></p>
-  <hr class="my-4">
-
-
+<div class="content-inside">
+  <h1>Hello, <strong><%= current_user.nickname%></strong></h1>
+  <h4>Welcome to iBook</h4>
 <div class="row">
   <div class="col-sm-6 col-md-3">
     <a class="card card-anchor card-margin" href="/books">
