@@ -1,3 +1,6 @@
+<% unless notice.to_s.strip.empty?%>
+  <p id="notice" class="form-size alert alert-info"><%= notice %></p>
+  <% end %>
 <div class="content-inside transparent-white">
   <h1 class="display-4">Hello, <strong><%= current_user.nickname%></strong></h1>
   <p class="lead">Welcome to <strong>iBook</strong></p>

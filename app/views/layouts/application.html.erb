@@ -58,9 +58,10 @@
 
   </div>
 </nav>
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
 <div class="content-body">
+  <% unless alert.to_s.strip.empty?%>
+  <p id="alert" class="form-size alert alert-warning"><%= alert %></p>
+  <% end %>
   <%= yield %>
 </div>
   </body>
