@@ -3,13 +3,10 @@
 
 <h1>Books</h1>
 
-
-
-
 <div class="row">
     <% @books.each do |book| %>
       <div class="col-sm-6 col-md-3">
-        <div class="card card-margin border-secondary">
+        <div class="card card-margin">
           <a class="card-anchor" href="/books/<%= book.id%>">
             <% if book.cover.present? %>
               <%= image_tag(book.cover.url, class: "card-img-top")%>
@@ -25,7 +22,7 @@
             <p class="text-muted">Added by <em><%= book.user.nickname %></em></p>
             <div class="row">
               <div class="col"><%= link_to 'Edit', edit_book_path(book), class:"btn btn-outline-warning btn-sm btn-block" %></div>
-              <div class="col"><%= link_to 'Remove', book, method: :delete, data: { confirm: 'Remove the category permanently from the database? Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %></div>
+              <div class="col"><%= link_to 'Remove', book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %></div>
             </div>
           </div>
      </div>
@@ -34,4 +31,4 @@
 </div>
 
 </div>
-<div class="action-panel transparent-white"><a href="/books/new" class="btn btn-primary float-right"><i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp;New Book</a></div>
+<div class="action-panel transparent-white eighty-percent"><a href="/books/new" class="btn btn-primary float-right"><i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp;New Book</a></div>

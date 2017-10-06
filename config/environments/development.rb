@@ -26,8 +26,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Compress assets
+  config.assets.css_compressor = :sass
+  config.assets.compile = true
+  config.assets.js_compressor = :uglifier
+
   # Don't care if the mailer can't send.
-  config.action_mailer.default_url_options = {host: 'localhost:3000'}
+  config.action_mailer.default_url_options = {host: 'https://masterrace-cuongnguyen19.c9users.io'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
