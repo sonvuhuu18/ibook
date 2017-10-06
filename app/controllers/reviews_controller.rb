@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :find_book, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
     @reviews = Review.all
@@ -61,5 +62,11 @@ class ReviewsController < ApplicationController
 
     def find_book
       @book = Book.find_by id: params[:book_id]
+    end
+
+    def require_permission
+      if current_user.id != @review.user.id
+        redirect_to(root_path, alert: "Unauthorized Access")
+      end
     end
 end

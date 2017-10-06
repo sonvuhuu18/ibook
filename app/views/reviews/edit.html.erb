@@ -1,6 +1,7 @@
 <h1>Editing Review</h1>
 
-<%= render 'form', review: @review %>
+<%= render 'form', book: @book, review: @review %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to "Back to Book", book_path(@review.book) %>
+<%= link_to 'Show', book_review_path(@book, @review) %> |
+<%= link_to "Back to Book", book_path(@book) %> |
+<%= link_to "Back to Review List", reviews_path %>
