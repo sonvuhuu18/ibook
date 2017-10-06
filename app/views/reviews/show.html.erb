@@ -15,8 +15,6 @@
   <%= @review.user.nickname %>
 </p>
 
-<% if current_user.id == @review.user.id %>
-  <%= link_to 'Edit', edit_book_review_path(@review.book, @review) %> |
-<% end %>
+<%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to "Back to Book", book_path(@review.book) %>
 

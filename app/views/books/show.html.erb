@@ -26,12 +26,10 @@
     <p>
       Reviews: <%= review.id %><br/>
       Content: <%= review.content %><br/>
-      <%= link_to "Show review", book_review_path(@book, review) %>
-      <% if current_user.id == review.user.id %> |
-        <%= link_to "Edit review", edit_book_review_path(@book, review) %> |
-        <%= link_to "Delete review", [@book, review], method: :delete,
-          data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
-      <% end %>
+      <%= link_to "Edit review", edit_book_review_path(@book, review) %> |
+      <%= link_to "Show review", book_review_path(@book, review) %> |
+      <%= link_to "Delete review", [@book, review], method: :delete,
+        data: {confirm: 'Remove the category permanently from the database? Are you sure?'}%>
     </p>
   <% end %>
 <% end %>
