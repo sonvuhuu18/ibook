@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @reviews = @book.reviews
   end
 
   def new

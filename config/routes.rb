@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :reviews
+  resources :books do
+    resources :reviews, except: :index
+  end
   resources :categories
   root "static_pages#home"
 

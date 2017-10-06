@@ -5,7 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :confirmable
-  has_many :books
+  has_many :books, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   class << self
     def from_omniauth auth

@@ -19,6 +19,22 @@
   <strong>User:</strong>
   <%= @book.user.nickname %>
 </p>
+
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    <hr>
+    <p>
+      Reviews: <%= review.id %><br/>
+      Content: <%= review.content %><br/>
+      <%= link_to "Edit review", edit_book_review_path(@book, review) %> |
+      <%= link_to "Show review", book_review_path(@book, review) %> |
+      <%= link_to "Delete review", [@book, review], method: :delete,
+        data: {confirm: 'Remove the category permanently from the database? Are you sure?'}%>
+    </p>
+  <% end %>
+<% end %>
+<hr>
+<%= link_to "New review", new_book_review_path(@book) %>
 <% unless notice.to_s.strip.empty? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>
