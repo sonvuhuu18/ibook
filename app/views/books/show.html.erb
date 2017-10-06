@@ -1,48 +1,68 @@
+<div class="content-inside">
 <div class="form-size transparent-white">
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<div class="row">
+    <div class="col-6">
+      <img src="<%= @book.cover %>" alt="This book's cover" class="img-thumbnail">
+    </div>
+    <div class="col-6">
+      <h5>
+  <em>"<%= @book.title %>"</em>
+</h5>
 
 <p>
-  <strong>Author:</strong>
-  <%= @book.author %>
+  <strong>Written by:</strong>
+  <%= @book.author %> <br />
+  <strong>Published in:</strong>
+  <%= @book.public_year %><br />
+  <% if @reviews.any? %>
+  <strong>Rating:</strong>
+  <%= @reviews.average(:rating).round(1) %><br />
 </p>
-
-<p>
-  <strong>Public year:</strong>
-  <%= @book.public_year %>
-</p>
-
-<p>
-  <strong>User:</strong>
+<p class="text-muted">
+  <strong>Added by:</strong>
   <%= @book.user.nickname %>
 </p>
+    </div>
+  </div>
 
-<% if @reviews.any? %>
-  <strong>Rating:</strong>
-  <%= @reviews.average(:rating).round(1) %>
-  <% @reviews.each do |review| %>
-    <hr>
-    <p>
-      User: <%= review.user.nickname %><br/>
-      Rating: <%= review.rating %><br/>
-      Content: <%= review.content %><br/>
-      <%= link_to "Show review", book_review_path(@book, review) %>
-      <% if current_user.id == review.user.id %> |
-        <%= link_to "Edit review", edit_book_review_path(@book, review) %> |
-        <%= link_to "Delete review", [@book, review], method: :delete,
-          data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
-      <% end %>
-    </p>
-  <% end %>
+
+
 <% end %>
 <hr>
-<%= link_to "New review", new_book_review_path(@book) %>
+&nbsp;
 <% unless notice.to_s.strip.empty? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>
-<%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
 <%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
+
+<% if current_user.id == @book.user.id %>
+<%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
+<%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger" %>
+<% end %>
+
+</div>
+<div class="form-size">
+  <h1>Reviews</h1>
+</div>
+
+    <% @reviews.each do |review| %>
+    <div class="form-size transparent-white">
+      <div>
+        <p><i class="fa fa-quote-right w3-xxlarge"></i><br>
+      <i><%= review.content %></i><br>
+      <i class="fa fa-quote-left float-right w3-xxlarge"></i><br></p>
+      <p>- <strong><%= review.user.nickname %></strong> rated this book <strong><%= review.rating %></strong> out of 10.</p>
+    </div>
+      <!--<%= link_to "Show", book_review_path(@book, review), class:"btn btn-outline-success" %>-->
+      <% if current_user.id == review.user.id %>
+        <%= link_to "Edit", edit_book_review_path(@book, review), class:"btn btn-outline-warning" %>
+        <%= link_to "Delete", [@book, review], class:"btn btn-outline-danger", method: :delete,
+          data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
+      <% end %>
+    </p>
+    </div>
+  <% end %>
+<div class="action-panel transparent-white eighty-percent"><%= link_to new_book_review_path(@book), class:"btn btn-primary float-right" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %></div>
+
 </div>

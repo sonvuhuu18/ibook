@@ -11,14 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content %>
-    <%= form.text_field :content, id: :review_content %>
+    <%= form.text_area :content, class: "form-control", id: :review_content %>
   </div>
 
   <% if review.new_record? %>
-    <%= form.label :rating %>
-    <%= form.select :rating, options_for_select(1..10), {prompt: "Your rate"}%>
+    <%= form.label :rating, class:"form-group" do%>
+    Rate this book&nbsp;
+    <% end %>
+    <%= form.select :rating, options_for_select(1..10), {prompt: ""}%>
   <% end %>
 
   <div class="field">
@@ -29,6 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Update", class:"btn btn-success" %>
+    <%= link_to "Discard changes", book_path(@book) , class:"btn btn-link"%>
   </div>
 <% end %>

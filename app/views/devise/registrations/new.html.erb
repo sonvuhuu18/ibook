@@ -11,12 +11,12 @@
     <%= f.text_field :nickname, class: "form-control", autocomplete: "off" %>
   </div>
 
-  <!--Currently has bugs-->
-  <!--<div class="form-group">-->
-  <!--  <%= f.label :avatar %><br />-->
-  <!--  <%= f.file_field :avatar %>-->
-  <!--  <%= f.hidden_field :avatar_cache %>-->
-  <!--</div>-->
+
+  <div class="form-group">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
 
   <div class="form-group">
     <%= f.label :password %>

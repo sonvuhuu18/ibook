@@ -21,7 +21,7 @@
     &nbsp;
     <form class="form-inline ">
       <div class="input-group">
-      <input class="form-control " type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       <span class="input-group-btn">
       <button class="btn btn-outline-success " type="submit">Search</button>
       </span>
@@ -42,16 +42,35 @@
       </li>
       <% end %>
       &nbsp;
-      <li class="nav-item ml-auto" id="user-nav-item">
+      
         <% if current_user%>
-          <a class="btn btn-light" role=button href="/users/edit"><i class="fa fa-user" aria-hidden="true"></i> <strong><%= current_user.nickname %></strong></a>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-light"%>
+          
+        <div class="btn-group">
+          <button type="button" class="btn btn-light">
+            <% if current_user.avatar.thumb.url.to_s.strip.empty?%> 
+                <i class="fa fa-user" aria-hidden="true"></i> 
+            <% else %>
+                <%= image_tag(current_user.avatar.thumb.url, class:"nav-pic") %> 
+            <% end %>
+              &nbsp;<strong><%= current_user.nickname %></strong></a></button>
+          <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu">
+            <a class="dropdown-item" href="/users/edit">Update profile</a>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+          </div>
+        </div>
+        
         <% else %>
+        <li class="nav-item ml-auto" id="user-nav-item">
           <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-primary" %>
           <%= link_to "Sign in", new_session_path(resource_name), class:"btn btn-outline-primary" %>
+          </li>
         <% end %>
-      </li>
-      &nbsp;
+
+      
     </ul>
 
   </div>
@@ -69,8 +88,8 @@
 <!--HTML Dependencies-->
     <script src="https://use.fontawesome.com/8f86609178.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
-<div class="container">
-  <%= debug(params) if Rails.env.development? %>
-</div>
+<!--<div class="form-size alert alert-info" role=alert>-->
+<!--  <%= debug(params) if Rails.env.development? %>-->
+<!--</div>-->
   </body>
 </html>
