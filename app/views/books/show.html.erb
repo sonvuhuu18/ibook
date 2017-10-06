@@ -1,27 +1,26 @@
 <div class="form-size transparent-white">
-  
-<div><img src="<%= @book.cover %>" alt="This book's cover" class="img-thumbnail"></div>
-<br />
+
+<div class="row">
+    <div class="col-6">
+      <img src="<%= @book.cover %>" alt="This book's cover" class="img-thumbnail">
+    </div>
+    <div class="col-6">
+      <h5>
+  <em>"<%= @book.title %>"</em>
+</h5>
 
 <p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<p>
-  <strong>Public year:</strong>
+  <strong>Written by:</strong>
+  <%= @book.author %> <br />
+  <strong>Published in:</strong>
   <%= @book.public_year %>
 </p>
-
-<p>
-  <strong>User:</strong>
+<p class="text-muted">
+  <strong>Added by:</strong>
   <%= @book.user.nickname %>
 </p>
+    </div>
+  </div>
 
 <% if @reviews.any? %>
   <strong>Rating:</strong>
@@ -49,8 +48,10 @@
 <% unless notice.to_s.strip.empty? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>
+<%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
+<br /><br/>
 <% if current_user.id == @book.user.id %>
 <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
+<%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger" %>
 <% end %>
-<%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
 </div>
