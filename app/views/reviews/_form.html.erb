@@ -16,6 +16,11 @@
     <%= form.text_field :content, id: :review_content %>
   </div>
 
+  <% if review.new_record? %>
+    <%= form.label :rating %>
+    <%= form.select :rating, options_for_select(1..10), {prompt: "Your rate"}%>
+  <% end %>
+
   <div class="field">
     <%= form.hidden_field :book_id, value: book.id %>
   </div>
