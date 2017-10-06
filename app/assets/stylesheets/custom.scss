@@ -89,3 +89,8 @@ body {
     object-fit: cover;
     background-color: white;
 }
+
+.custom-dropdown-menu {
+    min-width: 0px;
+    position: absolute!important;
+}
