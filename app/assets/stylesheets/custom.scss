@@ -80,3 +80,12 @@ body {
 .btn-facebook{color:#fff;background-color:#3b5998;border-color:rgba(0,0,0,0.2)}
 .btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
 .btn-facebook:hover{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
+
+.nav-pic {
+    height: 17px;
+    width: 17px;
+    border: 1px solid white;
+    border-radius: 4px;
+    object-fit: cover;
+    background-color: white;
+}

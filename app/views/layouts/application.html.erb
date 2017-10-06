@@ -44,7 +44,13 @@
       &nbsp;
       <li class="nav-item ml-auto" id="user-nav-item">
         <% if current_user%>
-          <a class="btn btn-light" role=button href="/users/edit"><i class="fa fa-user" aria-hidden="true"></i> <strong><%= current_user.nickname %></strong></a>
+          <a class="btn btn-light" role=button href="/users/edit">
+            <% if current_user.avatar.thumb.url.to_s.strip.empty?%> 
+              <i class="fa fa-user" aria-hidden="true"></i> 
+            <% else %>
+              <%= image_tag(current_user.avatar.thumb.url, class:"nav-pic") %> 
+            <% end %>
+          &nbsp;<strong><%= current_user.nickname %></strong></a>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-light"%>
         <% else %>
           <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-primary" %>
@@ -69,7 +75,7 @@
 <!--HTML Dependencies-->
     <script src="https://use.fontawesome.com/8f86609178.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
-<div class="container">
+<div class="form-size alert alert-info" role=alert>
   <%= debug(params) if Rails.env.development? %>
 </div>
   </body>
