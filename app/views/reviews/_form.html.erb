@@ -1,0 +1,34 @@
+<%= form_for [book, review] do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :review_content %>
+  </div>
+
+  <% if review.new_record? %>
+    <%= form.label :rating %>
+    <%= form.select :rating, options_for_select(1..10), {prompt: "Your rate"}%>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :book_id, value: book.id %>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

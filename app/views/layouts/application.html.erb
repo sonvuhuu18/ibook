@@ -4,14 +4,12 @@
     <title>iBook</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://use.fontawesome.com/8f86609178.js"></script>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top transparent-white">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top transparent-white eighty-percent">
   <a class="navbar-brand" href="/">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Gray_book.png" width="30" height="30" alt="">
     <strong>iBook</strong></a>
@@ -58,10 +56,21 @@
 
   </div>
 </nav>
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
 <div class="content-body">
+  <!--<% unless notice.to_s.strip.empty?%>-->
+  <!--<p id="notice" class="form-size alert alert-info"><%= notice %></p>-->
+  <!--<% end %>-->
+  <% unless alert.to_s.strip.empty?%>
+  <p id="alert" class="form-size alert alert-warning"><%= alert %></p>
+  <% end %>
   <%= yield %>
+</div>
+
+<!--HTML Dependencies-->
+    <script src="https://use.fontawesome.com/8f86609178.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+<div class="container">
+  <%= debug(params) if Rails.env.development? %>
 </div>
   </body>
 </html>

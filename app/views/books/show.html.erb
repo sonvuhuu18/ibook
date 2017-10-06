@@ -19,6 +19,27 @@
   <strong>User:</strong>
   <%= @book.user.nickname %>
 </p>
+
+<% if @reviews.any? %>
+  <strong>Rating:</strong>
+  <%= @reviews.average(:rating).round(1) %>
+  <% @reviews.each do |review| %>
+    <hr>
+    <p>
+      User: <%= review.user.nickname %><br/>
+      Rating: <%= review.rating %><br/>
+      Content: <%= review.content %><br/>
+      <%= link_to "Show review", book_review_path(@book, review) %>
+      <% if current_user.id == review.user.id %> |
+        <%= link_to "Edit review", edit_book_review_path(@book, review) %> |
+        <%= link_to "Delete review", [@book, review], method: :delete,
+          data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+<hr>
+<%= link_to "New review", new_book_review_path(@book) %>
 <% unless notice.to_s.strip.empty? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>

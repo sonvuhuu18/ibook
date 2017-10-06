@@ -27,5 +27,8 @@ module Ibook
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # Enable gzip compression for http request
+    config.middleware.use Rack::Deflater
   end
 end
