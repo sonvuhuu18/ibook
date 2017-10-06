@@ -21,10 +21,13 @@
 </p>
 
 <% if @reviews.any? %>
+  <strong>Rating:</strong>
+  <%= @reviews.average(:rating).round(1) %>
   <% @reviews.each do |review| %>
     <hr>
     <p>
-      Reviews: <%= review.id %><br/>
+      User: <%= review.user.nickname %><br/>
+      Rating: <%= review.rating %><br/>
       Content: <%= review.content %><br/>
       <%= link_to "Show review", book_review_path(@book, review) %>
       <% if current_user.id == review.user.id %> |

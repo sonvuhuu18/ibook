@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :find_book, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]
+  before_action :check_existing_review, only: [:new, :create]
 
   def index
     @reviews = Review.all
@@ -34,7 +35,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to book_path(@book), notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:content, :book_id, :user_id)
+      params.require(:review).permit(:content, :rating, :book_id, :user_id)
     end
 
     def find_book
@@ -67,6 +68,12 @@ class ReviewsController < ApplicationController
     def require_permission
       if current_user.id != @review.user.id
         redirect_to(root_path, alert: "Unauthorized Access")
+      end
+    end
+
+    def check_existing_review
+      if Review.find_by(book_id: @book.id, user_id: current_user.id)
+        redirect_to(book_path(@book), alert: "Already reviewed this book")
       end
     end
 end
