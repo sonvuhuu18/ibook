@@ -237,6 +237,7 @@ DEPENDENCIES
   mini_magick
   omniauth-facebook
   omniauth-google-oauth2
+  popper_js
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)
