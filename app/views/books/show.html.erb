@@ -1,4 +1,7 @@
 <div class="form-size transparent-white">
+  
+<div><img src="<%= @book.cover %>" alt="This book's cover" class="img-thumbnail"></div>
+<br />
 
 <p>
   <strong>Title:</strong>
@@ -39,10 +42,15 @@
   <% end %>
 <% end %>
 <hr>
-<%= link_to "New review", new_book_review_path(@book) %>
+<%= link_to new_book_review_path(@book), class:"btn btn-primary" do %>
+<i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp;Review this Book
+<% end %>
+&nbsp;
 <% unless notice.to_s.strip.empty? %>
 <p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>
+<% if current_user.id == @book.user.id %>
 <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
+<% end %>
 <%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
 </div>
