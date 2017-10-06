@@ -18,14 +18,14 @@
         <td><%= review.content %></td>
         <td><%= review.book.title %></td>
         <td><%= review.user.nickname %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', book_review_path(review.book, review) %></td>
+        <% if current_user.id == review.user.id %>
+          <td><%= link_to 'Edit', edit_book_review_path(review.book, review) %></td>
+            <td><%= link_to 'Destroy', [review.book, review], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Review', new_review_path %>
