@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :reviews, only: :index
+  resources :users
   resources :books do
     resources :reviews, except: :index
   end
