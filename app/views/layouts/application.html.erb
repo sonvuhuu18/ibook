@@ -46,7 +46,7 @@
         <% if current_user%>
           
         <div class="btn-group">
-          <button type="button" class="btn btn-light">
+          <button type="button" class="btn btn-light" >
             <% if current_user.avatar.thumb.url.to_s.strip.empty?%> 
                 <i class="fa fa-user" aria-hidden="true"></i> 
             <% else %>
@@ -57,6 +57,7 @@
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu">
+            <a class="dropdown-item" href="/users/<%= current_user.id%>">User profile</a>
             <a class="dropdown-item" href="/users/edit">Update profile</a>
           <div class="dropdown-divider"></div>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
