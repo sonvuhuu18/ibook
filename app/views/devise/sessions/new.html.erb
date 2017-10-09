@@ -1,4 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"form-size transparent-white"}) do |f| %>
+<% unless notice.to_s.strip.empty?%>
+  <p id="notice" class="form-size alert alert-info"><%= notice %></p>
+  <% end %>
   <h2>Sign in</h2>
   <div class="form-group">
     <%= f.label :email %><br />

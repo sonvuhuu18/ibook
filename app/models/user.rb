@@ -5,7 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :confirmable
-  has_many :books
+  has_many :books, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   class << self
     def from_omniauth auth
@@ -13,6 +14,8 @@ class User < ApplicationRecord
         user.email = auth.info.email
         user.nickname = auth.info.name
         user.password = Devise.friendly_token[0,20]
+        user.skip_confirmation!
+        user.save!
       end
     end
   end

@@ -1,12 +1,14 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :get_categories, only: [:new, :create, :edit, :update]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
     @books = Book.all
   end
 
   def show
+    @reviews = @book.reviews
   end
 
   def new
@@ -67,5 +69,11 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :author, :public_year, :user_id,
         :cover, :cover_cache, :remove_cover, category_ids: [])
+    end
+
+    def require_permission
+      if current_user.id != @book.user.id
+        redirect_to(root_path, alert: "Unauthorized access")
+      end
     end
 end

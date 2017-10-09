@@ -4,14 +4,12 @@
     <title>iBook</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://use.fontawesome.com/8f86609178.js"></script>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top transparent-white">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top transparent-white eighty-percent">
   <a class="navbar-brand" href="/">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Gray_book.png" width="30" height="30" alt="">
     <strong>iBook</strong></a>
@@ -23,7 +21,7 @@
     &nbsp;
     <form class="form-inline ">
       <div class="input-group">
-      <input class="form-control " type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       <span class="input-group-btn">
       <button class="btn btn-outline-success " type="submit">Search</button>
       </span>
@@ -44,24 +42,55 @@
       </li>
       <% end %>
       &nbsp;
-      <li class="nav-item ml-auto" id="user-nav-item">
+      
         <% if current_user%>
-          <a class="btn btn-light" role=button href="/users/edit"><i class="fa fa-user" aria-hidden="true"></i> <strong><%= current_user.nickname %></strong></a>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-light"%>
+          
+        <div class="btn-group">
+          <button type="button" class="btn btn-light" >
+            <% if current_user.avatar.thumb.url.to_s.strip.empty?%> 
+                <i class="fa fa-user" aria-hidden="true"></i> 
+            <% else %>
+                <%= image_tag(current_user.avatar.thumb.url, class:"nav-pic") %> 
+            <% end %>
+              &nbsp;<strong><%= current_user.nickname %></strong></a></button>
+          <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu">
+            <a class="dropdown-item" href="/users/<%= current_user.id%>">User profile</a>
+            <a class="dropdown-item" href="/users/edit">Update profile</a>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+          </div>
+        </div>
+        
         <% else %>
+        <li class="nav-item ml-auto" id="user-nav-item">
           <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-primary" %>
           <%= link_to "Sign in", new_session_path(resource_name), class:"btn btn-outline-primary" %>
+          </li>
         <% end %>
-      </li>
-      &nbsp;
+
+      
     </ul>
 
   </div>
 </nav>
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
 <div class="content-body">
+  <!--<% unless notice.to_s.strip.empty?%>-->
+  <!--<p id="notice" class="form-size alert alert-info"><%= notice %></p>-->
+  <!--<% end %>-->
+  <% unless alert.to_s.strip.empty?%>
+  <p id="alert" class="form-size alert alert-warning"><%= alert %></p>
+  <% end %>
   <%= yield %>
 </div>
+
+<!--HTML Dependencies-->
+    <script src="https://use.fontawesome.com/8f86609178.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+<!--<div class="form-size alert alert-info" role=alert>-->
+<!--  <%= debug(params) if Rails.env.development? %>-->
+<!--</div>-->
   </body>
 </html>

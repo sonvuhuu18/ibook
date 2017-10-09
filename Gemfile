@@ -19,6 +19,7 @@ gem 'bootstrap'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'popper_js'
 gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
 gem 'carrierwave', '~> 1.0'
@@ -41,3 +42,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Assets compressor
+gem 'yui-compressor', '~> 0.12.0'
