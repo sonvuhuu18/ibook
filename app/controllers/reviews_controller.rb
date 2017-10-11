@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :find_book, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]

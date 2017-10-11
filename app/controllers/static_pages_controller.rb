@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    redirect_to new_user_session_path unless current_user
+    @recently_reviewed_books = Book.recently_reviewed
   end
 end

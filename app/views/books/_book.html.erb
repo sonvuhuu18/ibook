@@ -13,7 +13,7 @@
     </a>
     <div class="card-footer">
       <p class="text-muted">Added by <em><%= book.user.nickname %></em></p>
-      <% if current_user.id == book.user.id %>
+      <% if current_user && current_user.id == book.user.id %>
         <div class="row">
           <div class="col"><%= link_to 'Edit', edit_book_path(book), class:"btn btn-outline-warning btn-sm btn-block" %></div>
           <div class="col"><%= link_to 'Remove', book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %></div>
