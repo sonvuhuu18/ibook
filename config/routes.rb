@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :reviews, except: :index
   end
   resources :categories
+  resources :search, only: :index
   root "static_pages#home"
 end
