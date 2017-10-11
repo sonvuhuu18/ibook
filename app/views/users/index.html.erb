@@ -1,0 +1,14 @@
+<div class= "container">
+<h1>List users</h1>
+<div class="row">
+    <% @users.each do |user| %>
+      <%= user.nickname %>:
+      <% if user.role == nil %>
+      <%= 'User' %>
+      <% else %>
+      <%= user.role %>
+      <% end %>
+      <br />
+    <% end %>
+</div>
+</div>
