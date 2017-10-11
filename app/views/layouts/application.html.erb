@@ -19,14 +19,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     &nbsp;
-    <form class="form-inline ">
+    <%= form_tag(search_index_path, class: "form-inline", method: :get) do %>
       <div class="input-group">
-      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-      <span class="input-group-btn">
-      <button class="btn btn-outline-success " type="submit">Search</button>
-      </span>
+        <%= text_field_tag :keyword, params[:keyword], class: "form-control",
+          autocomplete: :off %>
+        <%= select_tag :search_by, options_for_select(["Title", "Author", "Public Year"]),
+          class: "form-control" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", class: "btn btn-outline-success" %>
+        </span>
       </div>
-    </form>
+    <% end %>
 
     <ul class="navbar-nav ml-auto">
       &nbsp;
@@ -42,28 +45,29 @@
       </li>
       <% end %>
       &nbsp;
-      
+
         <% if current_user%>
-          
+
         <div class="btn-group">
-          <button type="button" class="btn btn-light" >
-            <% if current_user.avatar.thumb.url.to_s.strip.empty?%> 
-                <i class="fa fa-user" aria-hidden="true"></i> 
-            <% else %>
-                <%= image_tag(current_user.avatar.thumb.url, class:"nav-pic") %> 
-            <% end %>
-              &nbsp;<strong><%= current_user.nickname %></strong></a></button>
+          <%= button_to user_path(current_user),
+            class: "btn btn-light", method: :get do %>
+              <% if current_user.avatar.thumb.url.to_s.strip.empty?%>
+                  <i class="fa fa-user" aria-hidden="true"></i>
+              <% else %>
+                  <%= image_tag(current_user.avatar.thumb.url, class:"nav-pic") %>
+              <% end %>
+                &nbsp;<strong><%= current_user.nickname %></strong>
+          <% end %>
           <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu">
-            <a class="dropdown-item" href="/users/<%= current_user.id%>">User profile</a>
             <a class="dropdown-item" href="/users/edit">Update profile</a>
           <div class="dropdown-divider"></div>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
           </div>
         </div>
-        
+
         <% else %>
         <li class="nav-item ml-auto" id="user-nav-item">
           <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-primary" %>
@@ -71,7 +75,7 @@
           </li>
         <% end %>
 
-      
+
     </ul>
 
   </div>
