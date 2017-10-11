@@ -21,6 +21,9 @@ class Book < ApplicationRecord
   scope :search_by_public_year, ->(keyword) do
     where(public_year: keyword)
   end
+  scope :recently_reviewed, -> do
+    includes(:reviews).order("reviews.created_at desc").uniq
+  end
 
   private
 

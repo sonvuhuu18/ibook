@@ -12,7 +12,8 @@
 
 <p>
   <strong>Written by:</strong>
-  <%= @book.author %> <br />
+  <%= link_to(@book.author, search_index_path(keyword: @book.author, search_by: "Author")) %>
+  <br />
   <strong>Published in:</strong>
   <%= @book.public_year %><br />
   <% if @reviews.any? %>
@@ -36,7 +37,7 @@
 <% end %>
 <%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
 
-<% if current_user.id == @book.user.id %>
+<% if current_user && current_user.id == @book.user.id %>
 <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
 <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger" %>
 <% end %>
@@ -54,8 +55,7 @@
       <i class="fa fa-quote-left float-right w3-xxlarge"></i><br></p>
       <p>- <strong><%= review.user.nickname %></strong> rated this book <strong><%= review.rating %></strong> out of 10.</p>
     </div>
-      <!--<%= link_to "Show", book_review_path(@book, review), class:"btn btn-outline-success" %>-->
-      <% if current_user.id == review.user.id %>
+      <% if current_user && current_user.id == review.user.id %>
         <%= link_to "Edit", edit_book_review_path(@book, review), class:"btn btn-outline-warning" %>
         <%= link_to "Delete", [@book, review], class:"btn btn-outline-danger", method: :delete,
           data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
