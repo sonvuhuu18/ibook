@@ -1,14 +1,21 @@
 <div class= "container">
 <h1>List users</h1>
-<div class="row">
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+<table>
+  <thead>
+    <tr>
+      <td>Nickname</td>
+      <td>Email</td>
+      <td>Role</td>
+    </tr>
+  </thead>
+  <tbody>
     <% @users.each do |user| %>
-      <%= user.nickname %>:
-      <% if user.role == nil %>
-      <%= 'User' %>
-      <% else %>
-      <%= user.role %>
-      <% end %>
-      <br />
+    <tr>
+      <%= render user %>
+    </tr>
     <% end %>
-</div>
+  </tbody>
+</table>
 </div>
