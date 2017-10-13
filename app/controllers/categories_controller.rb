@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @books = Book.search_by_category @category.name
   end
 
   def new

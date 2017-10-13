@@ -30,6 +30,9 @@ class Book < ApplicationRecord
   scope :accepted, -> do
     where(pending: false)
   end
+  scope :search_by_category, ->(category) do
+    includes(:categories).where(categories: {name: category})
+  end
 
   private
 
