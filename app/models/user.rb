@@ -8,6 +8,18 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  def regular_user?
+    self.role == "Regular User"
+  end
+
+  def admin?
+    self.role == "Admin"
+  end
+
+  def super_admin?
+    self.role == "superadmin"
+  end
+
   class << self
     def from_omniauth auth
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
