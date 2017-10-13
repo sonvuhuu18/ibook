@@ -59,9 +59,9 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
-
+    
     def check_role
-      if current_user.regular_user?
+      if current_user.role == nil || current_user.role < 1
         redirect_to(root_path, alert: "Unauthorized access")
       end
     end

@@ -23,11 +23,11 @@
       <div class="input-group">
         <%= text_field_tag :keyword, params[:keyword], class: "form-control",
           autocomplete: :off %>
-
+        
         <span class="input-group-btn">
           <%= submit_tag "Search", class: "btn btn-outline-success" %>
         </span>
-
+        
       </div>
         <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"]),
           class: "custom-select" %>
@@ -37,19 +37,14 @@
       &nbsp;
       <% if current_user %>
       <li class="nav-item ml-auto">
-        <%= link_to "Home", root_path, class: "nav-link" %>
+        <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item ml-auto">
-        <%= link_to "Books", books_path, class: "nav-link" %>
+        <a class="nav-link" href="/books">Books</a>
       </li>
       <li class="nav-item ml-auto">
-        <%= link_to "Categories", categories_path, class: "nav-link" %>
+        <a class="nav-link" href="/categories">Categories</a>
       </li>
-      <% unless current_user.regular_user? %>
-        <li class="nav-item ml-auto">
-          <%= link_to "Request(#{@num_of_requests})", book_requests_path, class: "nav-link" %>
-        </li>
-      <% end %>
       <% end %>
       &nbsp;
 

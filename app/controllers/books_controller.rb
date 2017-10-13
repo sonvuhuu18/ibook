@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :accept_request]
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :get_categories, only: [:new, :create, :edit, :update]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.accepted
+    @books = Book.all
   end
 
   def show
@@ -50,14 +50,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def accept_request
-    if @book.update(book_params)
-      redirect_to(book_requests_path, notice: "Book request accepted")
-    else
-      redirect_to(book_requests_path, alert: "Failed")
-    end
-  end
-
   def destroy
     @book.destroy
     respond_to do |format|
@@ -76,12 +68,12 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :public_year, :user_id, :pending,
+      params.require(:book).permit(:title, :author, :public_year, :user_id,
         :cover, :cover_cache, :remove_cover, category_ids: [])
     end
 
     def require_permission
-      if current_user.regular_user? && current_user.id != @book.user.id
+      if current_user.id != @book.user.id
         redirect_to(root_path, alert: "Unauthorized access")
       end
     end
