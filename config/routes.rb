@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :books do
     resources :reviews, except: :index
+    member do
+      patch :accept_request
+      put :accept_request
+    end
   end
   resources :categories
   resources :search, only: :index
+  resources :book_requests, only: :index
   root "static_pages#home"
 end

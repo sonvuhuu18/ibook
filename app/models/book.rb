@@ -13,16 +13,22 @@ class Book < ApplicationRecord
   validates_integrity_of :cover
   validates_processing_of :cover
   scope :search_by_title, ->(keyword) do
-    where("title LIKE ?" , "%#{keyword}%")
+    where(pending: false).where("title LIKE ?" , "%#{keyword}%")
   end
   scope :search_by_author, ->(keyword) do
-    where("author LIKE ?", "%#{keyword}%")
+    where(pending: false).where("author LIKE ?", "%#{keyword}%")
   end
   scope :search_by_public_year, ->(keyword) do
-    where(public_year: keyword)
+    where(pending: false, public_year: keyword)
   end
   scope :recently_reviewed, -> do
-    includes(:reviews).order("reviews.created_at desc").uniq
+    where(pending: false).includes(:reviews).order("reviews.created_at desc").uniq
+  end
+  scope :pending, -> do
+    where(pending: true)
+  end
+  scope :accepted, -> do
+    where(pending: false)
   end
 
   private
