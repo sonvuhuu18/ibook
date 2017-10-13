@@ -23,17 +23,19 @@
       <div class="input-group">
         <%= text_field_tag :keyword, params[:keyword], class: "form-control",
           autocomplete: :off %>
-        <%= select_tag :search_by, options_for_select(["Title", "Author", "Public Year"]),
-          class: "form-control" %>
+        
         <span class="input-group-btn">
           <%= submit_tag "Search", class: "btn btn-outline-success" %>
         </span>
+        
       </div>
+        <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"]),
+          class: "custom-select" %>
     <% end %>
 
     <ul class="navbar-nav ml-auto">
       &nbsp;
-      <% if current_user%>
+      <% if current_user %>
       <li class="nav-item ml-auto">
         <a class="nav-link" href="/">Home</a>
       </li>

@@ -24,12 +24,14 @@
   <strong>Added by:</strong>
   <%= @book.user.nickname %>
 </p>
-    </div>
-  </div>
+    
+
 
 
 
 <% end %>
+</div>
+  </div>
 <hr>
 &nbsp;
 <% unless notice.to_s.strip.empty? %>
@@ -45,6 +47,10 @@
 </div>
 <div class="form-size">
   <h1>Reviews</h1>
+  <% unless @reviews.any? %>
+  <p>Be the first to review this book</p>
+  <%= link_to new_book_review_path(@book), class:"btn btn-primary" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %>
+  <% end %>
 </div>
 
     <% @reviews.each do |review| %>
