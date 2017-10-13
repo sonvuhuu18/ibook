@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :check_role, only: [:new, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
@@ -57,5 +58,11 @@ class CategoriesController < ApplicationController
 
     def category_params
       params.require(:category).permit(:name)
+    end
+    
+    def check_role
+      if current_user.role == nil || current_user.role < 1
+        redirect_to(root_path, alert: "Unauthorized access")
+      end
     end
 end
