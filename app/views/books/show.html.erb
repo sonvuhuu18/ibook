@@ -24,7 +24,7 @@
   <strong>Added by:</strong>
   <%= @book.user.nickname %>
 </p>
-
+    
 
 
 
@@ -45,7 +45,6 @@
 <% end %>
 
 </div>
-<% unless @book.pending %>
 <div class="form-size">
   <h1>Reviews</h1>
   <% unless @reviews.any? %>
@@ -61,7 +60,7 @@
       <i><%= review.content %></i><br>
       <i class="fa fa-quote-left float-right w3-xxlarge"></i><br></p>
       <p>- <strong><%= review.user.nickname %></strong> rated this book <strong><%= review.rating %></strong> out of 10.</p>
-      </div>
+    </div>
       <% if current_user && current_user.id == review.user.id %>
         <%= link_to "Edit", edit_book_review_path(@book, review), class:"btn btn-outline-warning" %>
         <%= link_to "Delete", [@book, review], class:"btn btn-outline-danger", method: :delete,
@@ -71,5 +70,5 @@
     </div>
   <% end %>
 <div class="action-panel transparent-white eighty-percent"><%= link_to new_book_review_path(@book), class:"btn btn-primary float-right" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %></div>
-<% end %>
+
 </div>
