@@ -6,6 +6,3 @@ user.nickname = "Admin"
 user.role = "superadmin"
 user.skip_confirmation!
 user.save
-
-Category.create(name: "Novel")
-Category.create(name: "References Book")
