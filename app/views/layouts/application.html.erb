@@ -29,7 +29,8 @@
         </span>
 
       </div>
-        <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"]),
+        <% filter = params[:search_by] ? params[:search_by] : "Title" %>
+        <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"], filter),
           class: "custom-select" %>
     <% end %>
 
