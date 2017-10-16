@@ -8,7 +8,7 @@ class SearchController < ApplicationController
       @books = Book.search_by_title keyword
     when "Author"
       @books = Book.search_by_author keyword
-    when "Public Year"
+    when "Year"
       @books = Book.search_by_public_year keyword
     end
   end

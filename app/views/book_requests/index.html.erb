@@ -20,8 +20,12 @@
             <div class="row">
               <div class="col">
                 <%= form_for book, url: accept_request_book_path(book), html: {method: :patch} do |f| %>
-                  <%= f.hidden_field :pending, value: false %>
+                  <%= f.hidden_field :status, value: "accepted" %>
                   <%= f.submit "Accept Request", class:"btn btn-outline-warning btn-sm btn-block"%>
+                <% end %>
+                <%= form_for book, url: reject_request_book_path(book), html: {method: :patch} do |f| %>
+                  <%= f.hidden_field :status, value: "rejected" %>
+                  <%= f.submit "Reject Request", class:"btn btn-outline-danger btn-sm btn-block"%>
                 <% end %>
               </div>
             </div>

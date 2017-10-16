@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews, except: :index
     member do
-      patch :accept_request
-      put :accept_request
+      patch :accept_request, :reject_request
+      put :accept_request, :reject_request
     end
   end
   resources :categories

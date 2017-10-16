@@ -32,9 +32,8 @@
   </div>
 
   <%= form.hidden_field :user_id, value: current_user.id %>
-  <% unless current_user.regular_user? %>
-    <%= form.hidden_field :pending, value: false %>
-  <% end %>
+  <% current_user.regular_user? ? status = "pending" : status = "accepted" %>
+  <%= form.hidden_field :status, value: status %>
 
   <% if book.errors.any? %>
     <div id="error_explanation">
