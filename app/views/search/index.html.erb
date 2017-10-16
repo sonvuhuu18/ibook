@@ -1,7 +1,7 @@
 <div class="content-inside">
   <h2>Search Result</h2>
   <div class="row">
-    <% @books.each do |book| %>
+    <% if @books && @books.each do |book| %>
       <%= render book %>
     <% end %>
   </div>

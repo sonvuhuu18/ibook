@@ -45,7 +45,7 @@
 <% end %>
 
 </div>
-<% unless @book.pending %>
+<% unless @book.pending? %>
 <div class="form-size">
   <h1>Reviews</h1>
   <% unless @reviews.any? %>
