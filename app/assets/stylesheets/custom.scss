@@ -102,5 +102,19 @@ body {
 
 .star-rating .fa-star {
     color: black;
-    
+
+}
+
+.notification {
+  img {
+    display: inline;
+  }
+
+  .notification-content {
+    display: inline-block;
+  }
+}
+
+.notification-not-read {
+  background-color: #B0DACC;
 }

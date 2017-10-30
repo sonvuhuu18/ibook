@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, :confirmable
   has_many :books, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   def regular_user?
     self.role == "Regular User"

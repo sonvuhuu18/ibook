@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016060405) do
+ActiveRecord::Schema.define(version: 20171030034431) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -35,6 +35,28 @@ ActiveRecord::Schema.define(version: 20171016060405) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notified_by_id"
+    t.string "notice_type"
+    t.string "book_id"
+    t.string "request_status"
+    t.integer "review_id"
+    t.boolean "is_read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
