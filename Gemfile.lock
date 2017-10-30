@@ -137,6 +137,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    pg (0.21.0)
     popper_js (1.11.1)
     puma (3.10.0)
     rack (2.0.3)
@@ -237,6 +238,7 @@ DEPENDENCIES
   mini_magick
   omniauth-facebook
   omniauth-google-oauth2
+  pg
   popper_js
   puma (~> 3.7)
   rails (~> 5.1.4)
