@@ -53,6 +53,9 @@ class BooksController < ApplicationController
 
   def accept_request
     if @book.update(book_params)
+      Notification.create user: @book.user, notified_by: current_user,
+        notice_type: 'BOOK_REQUEST', book: @book, request_status: 'ACCEPTED',
+        is_read: false
       redirect_to(book_requests_path, notice: "Book request accepted")
     else
       redirect_to(book_requests_path, alert: "Failed")
@@ -60,6 +63,9 @@ class BooksController < ApplicationController
   end
 
   def reject_request
+    Notification.create user: @book.user, notified_by: current_user,
+      notice_type: 'BOOK_REQUEST', book: @book, request_status: 'REJECTED',
+      is_read: false
     if @book.update(book_params)
       redirect_to(book_requests_path, notice: "Book request rejected")
     else
