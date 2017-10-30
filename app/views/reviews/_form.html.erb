@@ -17,11 +17,11 @@
   </div>
 
   <% if review.new_record? %>
-    <%= form.label :rating, class:"form-group" do%>
+    <%= form.label :rating, class:"form-group" do %>
     Rate this book&nbsp;
     <% end %>
     <%= form.select :rating, options_for_select(1..10), {prompt: ""}%>
-    
+
       <div class="star-rating">
         <h6>Rate this book</h6>
         <span class="fa fa-star-o" data-rating="1"></span>
@@ -57,7 +57,7 @@
 
         });
     </script>
-    
+
   <% end %>
 
   <div class="field">
