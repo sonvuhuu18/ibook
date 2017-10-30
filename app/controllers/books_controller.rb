@@ -1,10 +1,11 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :accept_request, :reject_request]
   before_action :get_categories, only: [:new, :create, :edit, :update]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    @books = Book.accepted
   end
 
   def show
@@ -20,15 +21,16 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    if params[:book][:category_ids]
-      params[:book][:category_ids].each do |id|
-        @book.categories << Category.find_by(id)
-      end
-    end
-
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html do
+          if current_user.regular_user?
+            notice = "Book request was successfully created. Please wait for an admin to process it. "
+          else
+            notice = "Book was successfully created."
+          end
+          redirect_to @book, notice: notice
+        end
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -46,6 +48,22 @@ class BooksController < ApplicationController
         format.html { render :edit }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def accept_request
+    if @book.update(book_params)
+      redirect_to(book_requests_path, notice: "Book request accepted")
+    else
+      redirect_to(book_requests_path, alert: "Failed")
+    end
+  end
+
+  def reject_request
+    if @book.update(book_params)
+      redirect_to(book_requests_path, notice: "Book request rejected")
+    else
+      redirect_to(book_requests_path, alert: "Failed")
     end
   end
 
@@ -67,12 +85,12 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :public_year, :user_id,
+      params.require(:book).permit(:title, :author, :public_year, :user_id, :status,
         :cover, :cover_cache, :remove_cover, category_ids: [])
     end
 
     def require_permission
-      if current_user.id != @book.user.id
+      if current_user.regular_user? && current_user.id != @book.user.id
         redirect_to(root_path, alert: "Unauthorized access")
       end
     end

@@ -12,7 +12,8 @@
 
 <p>
   <strong>Written by:</strong>
-  <%= @book.author %> <br />
+  <%= link_to(@book.author, search_index_path(keyword: @book.author, search_by: "Author")) %>
+  <br />
   <strong>Published in:</strong>
   <%= @book.public_year %><br />
   <% if @reviews.any? %>
@@ -23,12 +24,14 @@
   <strong>Added by:</strong>
   <%= @book.user.nickname %>
 </p>
-    </div>
-  </div>
+
+
 
 
 
 <% end %>
+</div>
+  </div>
 <hr>
 &nbsp;
 <% unless notice.to_s.strip.empty? %>
@@ -36,14 +39,19 @@
 <% end %>
 <%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
 
-<% if current_user.id == @book.user.id %>
+<% if current_user && current_user.id == @book.user.id %>
 <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>
 <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Remove the book permanently from the database? Are you sure?' }, class:"btn btn-outline-danger" %>
 <% end %>
 
 </div>
+<% unless @book.pending? %>
 <div class="form-size">
   <h1>Reviews</h1>
+  <% unless @reviews.any? %>
+  <p>Be the first to review this book</p>
+  <%= link_to new_book_review_path(@book), class:"btn btn-primary" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %>
+  <% end %>
 </div>
 
     <% @reviews.each do |review| %>
@@ -53,9 +61,8 @@
       <i><%= review.content %></i><br>
       <i class="fa fa-quote-left float-right w3-xxlarge"></i><br></p>
       <p>- <strong><%= review.user.nickname %></strong> rated this book <strong><%= review.rating %></strong> out of 10.</p>
-    </div>
-      <!--<%= link_to "Show", book_review_path(@book, review), class:"btn btn-outline-success" %>-->
-      <% if current_user.id == review.user.id %>
+      </div>
+      <% if current_user && current_user.id == review.user.id %>
         <%= link_to "Edit", edit_book_review_path(@book, review), class:"btn btn-outline-warning" %>
         <%= link_to "Delete", [@book, review], class:"btn btn-outline-danger", method: :delete,
           data: {confirm: 'Remove review permanently from the database? Are you sure?'}%>
@@ -64,5 +71,5 @@
     </div>
   <% end %>
 <div class="action-panel transparent-white eighty-percent"><%= link_to new_book_review_path(@book), class:"btn btn-primary float-right" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %></div>
-
+<% end %>
 </div>
