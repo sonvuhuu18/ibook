@@ -72,16 +72,8 @@
                 </p>
               </div>
               <div class="review-actions">
-                <div class="review-comments-action">
-                  <a href="#">
-                    <span>4</span>
-                    <span> comments</span>
-                  </a>
-                </div>
                 <div class="review-go-action">
-                  <a href="#">
-                    See review
-                  </a>
+                  <%= link_to "See review", review_path(review) %>
                 </div>
               </div>
               <% if current_user && current_user.id == review.user.id %>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations",
     omniauth_callbacks: "users/omniauth_callbacks"}
-  resources :reviews, only: :index
+  resources :reviews, only: [:index, :show]
   resources :users, only: [:index, :show, :edit, :update]
   resources :books do
     resources :reviews, except: :index
@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :search, only: :index
   resources :book_requests, only: :index
+  resources :comments, only: :create
   root "static_pages#home"
 end

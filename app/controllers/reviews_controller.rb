@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @new_comment = Comment.build_from(@review, current_user.id, "")
   end
 
   def new
