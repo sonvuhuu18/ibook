@@ -11,6 +11,7 @@ class BooksController < ApplicationController
 
   def show
     @reviews = @book.reviews
+    @bookmark = @book.bookmarks.find_by(user_id: current_user.id)
   end
 
   def new

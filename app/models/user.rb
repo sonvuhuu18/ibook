@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   def regular_user?
     self.role == "Regular User"
@@ -23,6 +24,10 @@ class User < ApplicationRecord
 
   def banned?
     self.is_banned
+  end
+
+  def bookmarked? book
+    self.bookmarks.exists?(book_id: book.id)
   end
 
   class << self
