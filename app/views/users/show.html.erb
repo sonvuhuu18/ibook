@@ -8,7 +8,7 @@
 <% if user_signed_in? %>
   <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-outline-warning" %>
 <%end%>
-<% if current_user.admin? %>
+<% if current_user.admin? && @user.regular_user? %>
   <%= @user.banned? ? render("unban_button", user: @user) : render("ban_button", user: @user) %>
 <% end %>
 </div>
