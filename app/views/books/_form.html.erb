@@ -16,6 +16,16 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :synopsis %>
+    <%= form.text_area :synopsis, class: "form-control", id: :book_synopsis%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :link %>
+    <%= form.text_field :link, class: "form-control", id: :book_link %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :cover %>
     <%= form.file_field :cover, class: "form-control", id: :book_cover %>
     <%= form.hidden_field :cover_cache %>

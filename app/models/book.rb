@@ -34,6 +34,8 @@ class Book < ApplicationRecord
     where(status: "accepted").includes(:categories).where(categories: {name: category})
   end
 
+  before_save :refine_book_link
+
   def pending?
     self.status == "pending"
   end
@@ -42,5 +44,13 @@ class Book < ApplicationRecord
 
   def has_categories
     errors.add(:base, "One of the categories must be checked") unless categories.size > 0
+  end
+
+  def add_protocol_to_url link
+    link.start_with?("http") ? link : "https://#{link}"
+  end
+
+  def refine_book_link
+    self.link = add_protocol_to_url(self.link)
   end
 end
