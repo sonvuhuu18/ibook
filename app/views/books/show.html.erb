@@ -68,7 +68,7 @@
                   <i class="fa fa-quote-left float-right w3-xxlarge"></i><br>
                 </p>
                 <p>
-                  - <strong><%= review.user.nickname %></strong> rated this book <strong><%= review.rating %></strong> out of 5.
+                  - <strong><%= link_to review.user.nickname, user_path(review.user) %></strong> rated this book <strong><%= review.rating %></strong> out of 5.
                 </p>
               </div>
               <div class="review-actions">

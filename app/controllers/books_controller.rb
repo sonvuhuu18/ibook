@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_banned_user, except: [:index, :show]
   before_action :set_book, only: [:show, :edit, :update, :destroy, :accept_request, :reject_request]
   before_action :get_categories, only: [:new, :create, :edit, :update]
   before_action :require_permission, only: [:edit, :update, :destroy]
@@ -98,6 +99,12 @@ class BooksController < ApplicationController
     def require_permission
       if current_user.regular_user? && current_user.id != @book.user.id
         redirect_to(root_path, alert: "Unauthorized access")
+      end
+    end
+
+    def check_banned_user
+      if current_user.banned?
+        redirect_to root_path, alert: "Your account has been banned"
       end
     end
 end

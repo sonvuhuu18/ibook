@@ -14,11 +14,15 @@ class User < ApplicationRecord
   end
 
   def admin?
-    self.role == "Admin"
+    self.role == "Admin" || self.role == "superadmin"
   end
 
   def super_admin?
     self.role == "superadmin"
+  end
+
+  def banned?
+    self.is_banned
   end
 
   class << self

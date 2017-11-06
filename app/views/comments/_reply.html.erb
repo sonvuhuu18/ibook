@@ -1,7 +1,8 @@
 <% comments.each do |comment| %>
   <div class="comments-show">
     <div class="comment">
-      <p><strong><%= comment.user.nickname %></strong> <%= comment.body %><br></p>
+      <p><strong><%= link_to comment.user.nickname, user_path(comment.user) %></strong> <%= comment.body %><br></p>
+      <% unless current_user.banned? %>
       <div class="comment-nav"><a href="#" class="comment-reply">reply</a></div>
       <div class="reply-form">
         <%= form_for @new_comment do |f| %>
@@ -16,6 +17,7 @@
           </div>
         <% end %>
       </div>
+      <% end %>
     </div>
     <%= render "comments/reply", comments: comment.children %>
   </div>
