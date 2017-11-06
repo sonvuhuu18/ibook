@@ -4,7 +4,11 @@
   </h4>
 </div>
 
-<%= render "comments/form", new_comment: new_comment %>
+<% if current_user.banned? %>
+  Cannot comment. Your account has been banned.
+<% else %>
+  <%= render "comments/form", new_comment: new_comment %>
+<% end %>
 
 <div class="comments-container">
   <%= render "comments/reply", comments: commentable.root_comments %>

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_banned_user
 
   def create
     commentable = commentable_type.constantize.find(commentable_id)
@@ -46,4 +47,9 @@ class CommentsController < ApplicationController
     @comment.move_to_child_of(parent_comment)
   end
 
+  def check_banned_user
+    if current_user.banned?
+      redirect_to root_path, alert: "Your account has been banned"
+    end
+  end
 end

@@ -3,6 +3,12 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"}
   resources :reviews, only: [:index, :show]
   resources :users, only: [:index, :show, :edit, :update]
+  resources :users do
+    member do
+      patch :ban_or_unban
+      put :ban_or_unban
+    end
+  end
   resources :books do
     resources :reviews, except: :index
     member do
