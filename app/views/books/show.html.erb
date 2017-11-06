@@ -37,7 +37,11 @@
         <% unless notice.to_s.strip.empty? %>
         <p id="notice" class="alert alert-info"><%= notice %></p>
         <% end %>
-        <%= link_to 'OK', books_path, class:"btn btn-outline-success" %>
+        <% if current_user.bookmarked?(@book) %>
+          <%= render "bookmarks/unbookmark", book: @book, user: current_user %>
+        <% else %>
+          <%= render "bookmarks/bookmark", book: @book, user: current_user %>
+        <% end %>
 
         <% if current_user && current_user.id == @book.user.id %>
         <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-outline-warning" %>

@@ -3,6 +3,7 @@ class Book < ApplicationRecord
   has_many :book_categories, dependent: :destroy
   has_many :categories, through: :book_categories
   has_many :reviews, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :title, presence: true
   validates :author, presence: true
@@ -32,6 +33,9 @@ class Book < ApplicationRecord
   end
   scope :search_by_category, ->(category) do
     where(status: "accepted").includes(:categories).where(categories: {name: category})
+  end
+  scope :get_by_ids, -> (ids) do
+    where(status: "accepted").where(id: ids)
   end
 
   before_save :refine_book_link

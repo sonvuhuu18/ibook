@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   resources :search, only: :index
   resources :book_requests, only: :index
   resources :comments, only: :create
+  resources :bookmarks, only: [:index, :create, :destroy]
   root "static_pages#home"
 end
