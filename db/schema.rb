@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106055701) do
+ActiveRecord::Schema.define(version: 20171106132048) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(version: 20171106055701) do
     t.string "book_id"
     t.string "request_status"
     t.integer "review_id"
-    t.boolean "is_read", default: false
+    t.boolean "is_read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
+    t.integer "comment_id"
   end
 
   create_table "reviews", force: :cascade do |t|

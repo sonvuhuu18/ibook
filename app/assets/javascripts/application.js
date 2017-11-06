@@ -17,7 +17,9 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-$(document).ready(function() {
+
+
+$(document).on('turbolinks:load', function() {
   $(".comment-reply").on("click", function(e) {
     e.preventDefault();
     $(this).closest('.comment').find('.reply-form').toggle();

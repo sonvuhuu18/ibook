@@ -1,5 +1,7 @@
 <% if noti.notice_type == 'BOOK_REQUEST' %>
   <% target_link = noti.request_status == 'ACCEPTED' ? book_path(noti.book.id) : edit_book_path(noti.book.id) %>
+<% else %>
+  <% target_link = review_path(noti.comment.commentable_id, anchor: "comment-#{noti.comment.id}") %>
 <% end %>
 <a class="dropdown-item notification <%= noti.is_read ? 'notification-read' : 'notification-not-read' %>" href="<%= target_link %>">
   <% if noti.notice_type == 'BOOK_REQUEST' %>
@@ -20,5 +22,11 @@
         </p>
       </span>
     <% end %>
+  <% elsif noti.notice_type == 'REPLY' %>
+  <span class="col-md-8">
+    <p class="notification-content">
+      <%= noti.notified_by.nickname %> replied to your comment.
+    </p>
+  </span>
   <% end %>
 </a>
