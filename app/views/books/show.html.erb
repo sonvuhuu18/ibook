@@ -18,6 +18,9 @@
               <br />
               <strong>Published in:</strong>
               <%= @book.public_year %><br />
+              <strong>Synopsis:</strong>
+              <%= @book.synopsis %><br />
+              <%= link_to "Link to Amazon", @book.link, target: :_blank %><br />
               <% if @reviews.any? %>
               <strong>Rating:</strong>
               <%= @reviews.average(:rating).round(1) %><br />
@@ -26,11 +29,6 @@
               <strong>Added by:</strong>
               <%= @book.user.nickname %>
             </p>
-
-
-
-
-
             <% end %>
           </div>
         </div>
