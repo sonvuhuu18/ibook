@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  before_action :check_banned_user, except: [:index, :show]
   before_action :find_book, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]
@@ -9,6 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @new_comment = Comment.build_from(@review, current_user.id, "")
   end
 
   def new
@@ -74,6 +77,12 @@ class ReviewsController < ApplicationController
     def check_existing_review
       if Review.find_by(book_id: @book.id, user_id: current_user.id)
         redirect_to(book_path(@book), alert: "Already reviewed this book")
+      end
+    end
+
+    def check_banned_user
+      if current_user.banned?
+        redirect_to root_path, alert: "Your account has been banned"
       end
     end
 end

@@ -94,3 +94,56 @@ body {
     min-width: 0px;
     position: absolute!important;
 }
+
+.star-rating {
+  line-height:32px;
+  font-size:20px;
+}
+
+.star-rating .fa-star {
+    color: black;
+
+}
+
+.notification {
+  img {
+    display: inline;
+  }
+
+  .notification-content {
+    display: inline-block;
+  }
+}
+
+.notification-not-read {
+  background-color: #B0DACC;
+}
+
+.comments-header {
+  border-bottom: 1px dotted gray;
+  margin-bottom: 10px;
+}
+
+.comments-container {
+  p {
+    margin-bottom: 0px;
+  }
+  .comment-nav {
+    margin-left: 5px;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 10px;
+      font-weight: bold;
+      color: #888;
+    }
+  }
+}
+
+.reply-form {
+  display: none;
+}
+
+.comments-show {
+  margin-left: 25px;
+}

@@ -1,0 +1,8 @@
+<div class="content-inside">
+  <h1>Bookmarked List</h1>
+  <% if @books %>
+    <% @books.each do |book| %>
+      <%= render book %>
+    <% end %>
+  <% end %>
+</div>

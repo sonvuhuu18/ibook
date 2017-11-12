@@ -7,7 +7,7 @@ end
 
 
 gem 'rails', '~> 5.1.4'
-gem 'sqlite3'
+gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -20,15 +20,17 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'popper_js'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-turbolinks'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'config'
+gem 'acts_as_commentable_with_threading'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3'
 end
 
 group :development do

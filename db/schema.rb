@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006061253) do
+ActiveRecord::Schema.define(version: 20171106132048) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20171006061253) do
     t.index ["category_id"], name: "index_book_categories_on_category_id"
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_bookmarks_on_book_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
@@ -29,6 +38,9 @@ ActiveRecord::Schema.define(version: 20171006061253) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover"
+    t.string "status"
+    t.string "synopsis"
+    t.string "link"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
@@ -36,6 +48,35 @@ ActiveRecord::Schema.define(version: 20171006061253) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.string "title"
+    t.text "body"
+    t.string "subject"
+    t.integer "user_id", null: false
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notified_by_id"
+    t.string "notice_type"
+    t.string "book_id"
+    t.string "request_status"
+    t.integer "review_id"
+    t.boolean "is_read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "comment_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -69,6 +110,8 @@ ActiveRecord::Schema.define(version: 20171006061253) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "role", default: "Regular User"
+    t.boolean "is_banned", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
