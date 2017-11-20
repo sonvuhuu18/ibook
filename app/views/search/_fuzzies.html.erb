@@ -1,0 +1,15 @@
+<% books.each do |book| %>
+  <div class="fuzzy">
+    <%= link_to book do %>
+      <div class="row">
+        <div class="col-sm-3">
+          <%= image_tag book.cover %>
+        </div>
+        <div class="col-sm-9">
+          <h4><%= book.title %></h4>
+          <p><%= book.author %>, <%= book.public_year %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

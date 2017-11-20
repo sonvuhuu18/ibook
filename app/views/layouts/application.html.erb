@@ -21,18 +21,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       &nbsp;
       <%= form_tag(search_index_path, class: "form-inline", method: :get) do %>
-      <div class="input-group">
-        <%= text_field_tag :keyword, params[:keyword], class: "form-control",
-        autocomplete: :off %>
+        <div class="input-group">
+          <%= text_field_tag :keyword, params[:keyword], class: "form-control",
+          autocomplete: :off %>
+          <span class="input-group-btn">
+            <%= submit_tag "Search", class: "btn btn-outline-success" %>
+          </span>
+        </div>
+        <div class="fuzzies">
+        </div>
+        <% filter = params[:search_by] ? params[:search_by] : "Title" %>
+        <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"], filter),
+        class: "custom-select" %>
 
-        <span class="input-group-btn">
-          <%= submit_tag "Search", class: "btn btn-outline-success" %>
-        </span>
-
-      </div>
-      <% filter = params[:search_by] ? params[:search_by] : "Title" %>
-      <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"], filter),
-      class: "custom-select" %>
       <% end %>
 
       <ul class="navbar-nav ml-auto">
@@ -119,5 +120,26 @@
     <div class="form-size alert alert-info" role=alert>
       <%= debug(params) if Rails.env.development? %>
     </div>
+
+    <script>
+      // Submit search form onChange
+      $(document).on('turbolinks:load', function(){
+        $('input#keyword').keyup(function(){
+          var keyword = $('input#keyword').val()
+          var searchBy = $('select').val()
+          $.ajax({
+            method: "POST",
+            url: '/search',
+            data: {
+              keyword: keyword,
+              search_by: searchBy
+            }
+          })
+          .done(function(html){
+            console.log("fuzzy successfully")
+          })
+        })
+      })
+    </script>
 </body>
 </html>
