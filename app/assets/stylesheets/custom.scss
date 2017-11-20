@@ -153,8 +153,17 @@ body {
 .fuzzies {
   position: absolute;
   top: 50px;
-  background-color: #fff;
-  border: 1px solid #888;
-  border-top: none;
-  border-radius: 10px;
+  width: 420px;
+}
+
+.fuzzy {
+  border-bottom: solid gray 1px;
+}
+
+.fuzzy-img {
+  width: 100%;
+}
+
+.fuzzy-text {
+  padding: 12px 0px;
 }
