@@ -12,4 +12,22 @@ class SearchController < ApplicationController
       @books = Book.search_by_public_year keyword
     end
   end
+
+  def fuzzy
+    keyword = params[:keyword]
+    search_by = params[:search_by]
+    case search_by
+    when "Title"
+      @books = Book.search_by_title keyword
+    when "Author"
+      @books = Book.search_by_author keyword
+    when "Year"
+      @books = Book.search_by_public_year keyword
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
 end

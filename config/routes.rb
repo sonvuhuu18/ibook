@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :categories
   resources :search, only: :index
+  post 'search', to: 'search#fuzzy'
   resources :book_requests, only: :index
   resources :comments, only: :create
   resources :bookmarks, only: [:index, :create, :destroy]
