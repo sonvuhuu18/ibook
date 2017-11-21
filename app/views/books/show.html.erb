@@ -37,10 +37,12 @@
         <% unless notice.to_s.strip.empty? %>
         <p id="notice" class="alert alert-info"><%= notice %></p>
         <% end %>
-        <% if current_user.bookmarked?(@book) %>
-          <%= render "bookmarks/unbookmark", book: @book, user: current_user %>
-        <% else %>
-          <%= render "bookmarks/bookmark", book: @book, user: current_user %>
+        <% if current_user %>
+          <% if current_user.bookmarked?(@book) %>
+            <%= render "bookmarks/unbookmark", book: @book, user: current_user %>
+          <% else %>
+            <%= render "bookmarks/bookmark", book: @book, user: current_user %>
+          <% end %>
         <% end %>
 
         <% if current_user && current_user.id == @book.user.id %>
