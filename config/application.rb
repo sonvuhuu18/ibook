@@ -30,5 +30,7 @@ module Ibook
     
     # Enable gzip compression for http request
     config.middleware.use Rack::Deflater
+    
+    config.i18n.default_locale = :ja
   end
 end
