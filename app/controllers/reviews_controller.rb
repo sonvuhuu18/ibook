@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @new_comment = Comment.build_from(@review, current_user.id, "")
+    @new_comment = Comment.build_from(@review, current_user.id, "") if current_user
   end
 
   def new
