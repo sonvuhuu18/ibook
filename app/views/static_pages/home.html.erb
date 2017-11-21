@@ -2,7 +2,7 @@
   <p id="notice" class="form-size alert alert-info"><%= notice %></p>
   <% end %>
 <div class="content-inside">
-<h2>Recently reviewed books</h2>
+<h2><%= t("home.recently_reviewed_books") %></h2>
 <div class="row">
   <% @recently_reviewed_books.each do |book| %>
     <%= render book %>

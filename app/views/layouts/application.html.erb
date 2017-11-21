@@ -26,12 +26,12 @@
         autocomplete: :off %>
 
         <span class="input-group-btn">
-          <%= submit_tag "Search", class: "btn btn-outline-success" %>
+          <%= submit_tag t("home.search"), class: "btn btn-outline-success" %>
         </span>
 
       </div>
       <% filter = params[:search_by] ? params[:search_by] : "Title" %>
-      <%= select_tag :search_by, options_for_select(["Title", "Author", "Year"], filter),
+      <%= select_tag :search_by, options_for_select({t("home.title") => "Title",t("home.author") => "Author",t("home.year") => "Year"}, filter),
       class: "custom-select" %>
       <% end %>
 
@@ -39,13 +39,13 @@
           &nbsp;
           <% if current_user %>
           <li class="nav-item ml-auto">
-            <%= link_to "Home", root_path, class: "nav-link" %>
+            <%= link_to t("home.home"), root_path, class: "nav-link" %>
           </li>
           <li class="nav-item ml-auto">
-            <%= link_to "Books", books_path, class: "nav-link" %>
+            <%= link_to t("home.books"), books_path, class: "nav-link" %>
           </li>
           <li class="nav-item ml-auto">
-            <%= link_to "Categories", categories_path, class: "nav-link" %>
+            <%= link_to t("home.categories"), categories_path, class: "nav-link" %>
           </li>
 
           <% unless current_user.regular_user? %>
@@ -60,7 +60,7 @@
           <!-- notification -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Notifications
+              <%= t("home.notifications") %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <% current_user.notifications.order(created_at: :desc).each do |noti| %>
@@ -84,17 +84,17 @@
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu">
-              <a class="dropdown-item" href="/users/edit">Update profile</a>
-              <%= link_to "Bookmarked List", bookmarks_path, class: "dropdown-item" %>
+              <a class="dropdown-item" href="/users/edit"><%= t("home.update_profile") %></a>
+              <%= link_to t("home.bookmarked_list"), bookmarks_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+              <%= link_to t("home.sign_out"), destroy_user_session_path, method: :delete, class: "dropdown-item"%>
             </div>
           </div>
 
         <% else %>
           <li class="nav-item ml-auto" id="user-nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class:"btn btn-primary" %>
-            <%= link_to "Sign in", new_user_session_path, class:"btn btn-outline-primary" %>
+            <%= link_to t("home.sign_up"), new_user_registration_path, class:"btn btn-primary" %>
+            <%= link_to t("home.sign_in"), new_user_session_path, class:"btn btn-outline-primary" %>
           </li>
         <% end %>
 
