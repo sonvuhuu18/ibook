@@ -1,7 +1,11 @@
 <% comments.each do |comment| %>
   <div class="comments-show">
     <div class="comment" id="comment-<%= comment.id %>">
-      <p><strong><%= link_to comment.user.nickname, user_path(comment.user) %></strong> <%= comment.body %><br></p>
+      <% if comment.user.banned? %>
+        <p><strong>User has been banned</strong></p>
+      <% else %>
+        <p><strong><%= link_to comment.user.nickname, user_path(comment.user) %></strong> <%= comment.body %><br></p>
+      <% end %>
       <% if current_user %>
       <% unless current_user.banned? %>
         <div class="comment-nav"><a href="#" class="comment-reply">reply</a></div>

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       make_child_comment
-      if @comment.parent.id != @comment.user.id
+      if @comment.parent && @comment.parent.id != @comment.user.id
         a = Notification.create! user: @comment.parent.user, notified_by: @comment.user,
           notice_type: 'REPLY', comment_id: @comment.id, is_read: false
       end
