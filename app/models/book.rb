@@ -40,6 +40,13 @@ class Book < ApplicationRecord
 
   before_save :refine_book_link
 
+  def self.fuzzy_search keyword
+    Book.where("title LIKE ?" , "%#{keyword}%")
+      .or(Book.where("author LIKE ?", "%#{keyword}%"))
+      .or(Book.where(public_year: keyword))
+      .where(status: "accepted")
+  end
+
   def pending?
     self.status == "pending"
   end
