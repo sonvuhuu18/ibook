@@ -58,7 +58,7 @@
   <% end %>
   <br />
   <div class="actions">
-    <%= form.submit "Update", class:"btn btn-success" %>
-    <%= link_to 'Discard Changes', books_path, class:"btn btn-link" %>
+    <%= form.submit t("books.update"), class:"btn btn-success" %>
+    <%= link_to t("books.discard"), books_path, class:"btn btn-link" %>
   </div>
 <% end %>

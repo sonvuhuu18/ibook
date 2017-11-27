@@ -16,16 +16,16 @@
             <h4 class="card-title"><em>"<%= book.title %>"</em><small>, <%= book.public_year %>.</small></h4>
           </div>
           <div class="card-footer">
-            <p class="text-muted">Added by <em><%= book.user.nickname %></em></p>
+            <p class="text-muted"><%= t("books.added_by", user: book.user.nickname)%></p>
             <div class="row">
               <div class="col">
                 <%= form_for book, url: accept_request_book_path(book), html: {method: :patch} do |f| %>
                   <%= f.hidden_field :status, value: "accepted" %>
-                  <%= f.submit "Accept Request", class:"btn btn-outline-warning btn-sm btn-block"%>
+                  <%= f.submit t("books.accept"), class:"btn btn-outline-warning btn-sm btn-block"%>
                 <% end %>
                 <%= form_for book, url: reject_request_book_path(book), html: {method: :patch} do |f| %>
                   <%= f.hidden_field :status, value: "rejected" %>
-                  <%= f.submit "Reject Request", class:"btn btn-outline-danger btn-sm btn-block"%>
+                  <%= f.submit t("books.reject"), class:"btn btn-outline-danger btn-sm btn-block"%>
                 <% end %>
               </div>
             </div>

@@ -1,17 +1,17 @@
 <%- if controller_name != 'sessions' %>
-  <h6 class="text-muted">Already signed up?</h6>
-  <%= link_to "Sign in", new_session_path(resource_name), class:"btn btn-primary btn-block" %>
+  <h6 class="text-muted"><%= t("user.already?")%></h6>
+  <%= link_to t("user.sign_in"), new_session_path(resource_name), class:"btn btn-primary btn-block" %>
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%- if OmniAuth::Utils.camelize(provider) == "GoogleOauth2" -%>
       <%= link_to omniauth_authorize_path(resource_name, provider), class:"btn btn-google btn-block" do %>
-          <span class="fa fa-google"></span> &nbsp; Sign in with Google
+          <span class="fa fa-google"></span> &nbsp; <%= t("user.google_sign_in") %>
       <% end %>
     <%- elsif OmniAuth::Utils.camelize(provider) == "Facebook" -%>
       <%= link_to omniauth_authorize_path(resource_name, provider), class:"btn btn-facebook btn-block" do %>
-          <span class="fa fa-facebook"></span>  &nbsp; Sign in with Facebook
+          <span class="fa fa-facebook"></span>  &nbsp; <%= t("user.facebook_sign_in") %>
       <% end %>
     <% else %>
       <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %>
@@ -20,11 +20,11 @@
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <br /><h6 class="text-muted">New to our website?</h6>
-  <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-primary btn-block" %>
+  <br /><h6 class="text-muted"><%= t("user.new")%></h6>
+  <%= link_to t("user.sign_up"), new_registration_path(resource_name), class:"btn btn-primary btn-block" %>
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <br /><h6 class="text-muted">Didn't receive confirmation instructions email?</h6>
-    <%= link_to "Resent email", new_confirmation_path(resource_name), class:"btn btn-outline-secondary btn-block" %>
+    <br /><h6 class="text-muted"><%= t("user.did_not_receive_email")%></h6>
+    <%= link_to t("user.resent_email"), new_confirmation_path(resource_name), class:"btn btn-outline-secondary btn-block" %>
   <% end -%>
 <% end -%>
 

@@ -18,7 +18,7 @@
 
   <% if review.new_record? %>
     <div class="star-rating">
-      <h6>Rate this book</h6>
+      <h6><%= t("reviews.rate")%></h6>
       <span class="fa fa-star-o" data-rating="1"></span>
       <span class="fa fa-star-o" data-rating="2"></span>
       <span class="fa fa-star-o" data-rating="3"></span>
@@ -60,7 +60,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Update", class:"btn btn-success" %>
-    <%= link_to "Discard changes", book_path(@book) , class:"btn btn-link"%>
+    <%= form.submit t("reviews.update"), class:"btn btn-success" %>
+    <%= link_to t("reviews.discard"), book_path(@book) , class:"btn btn-link"%>
   </div>
 <% end %>

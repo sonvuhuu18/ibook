@@ -26,8 +26,7 @@
               <%= @reviews.average(:rating).round(1) %><br />
             </p>
             <p class="text-muted">
-              <strong><%= t("books.added_by") %></strong>
-              <%= @book.user.nickname %>
+              <strong><%= t("books.added_by", user: @book.user.nickname) %></strong>
             </p>
             <% end %>
           </div>
@@ -58,8 +57,8 @@
           <div class="form-size">
             <h1><%= t("books.reviews") %></h1>
             <% unless @reviews.any? %>
-              <p>Be the first to review this book</p>
-              <%= link_to new_book_review_path(@book), class:"btn btn-primary" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Review this Book<% end %>
+              <p><%= t("books.be_the_first")%></p>
+              <%= link_to new_book_review_path(@book), class:"btn btn-primary" do %><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;<%= t("books.review_this_book")%><% end %>
             <% end %>
           </div>
 

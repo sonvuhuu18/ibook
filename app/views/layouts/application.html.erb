@@ -24,11 +24,11 @@
       <div class="input-group">
         <%= text_field_tag :keyword, params[:keyword], class: "form-control",
         autocomplete: :off %>
-
         <span class="input-group-btn">
           <%= submit_tag t("home.search"), class: "btn btn-outline-success" %>
         </span>
-
+      </div>
+      <div class="fuzzies">
       </div>
       <% filter = params[:search_by] ? params[:search_by] : "Title" %>
       <%= select_tag :search_by, options_for_select({t("home.title") => "Title",t("home.author") => "Author",t("home.year") => "Year"}, filter),
@@ -117,5 +117,25 @@
     <script src="https://use.fontawesome.com/8f86609178.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
 
+    <script>
+      // Submit search form onChange
+      $(document).on('turbolinks:load', function(){
+        $('input#keyword').keyup(function(){
+          var keyword = $('input#keyword').val()
+          var searchBy = $('select').val()
+          $.ajax({
+            method: "POST",
+            url: '/search',
+            data: {
+              keyword: keyword,
+              search_by: searchBy
+            }
+          })
+          .done(function(html){
+            console.log("fuzzy successfully")
+          })
+        })
+      })
+    </script>
 </body>
 </html>
