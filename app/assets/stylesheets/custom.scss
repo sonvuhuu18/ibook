@@ -147,3 +147,23 @@ body {
 .comments-show {
   margin-left: 25px;
 }
+
+
+// search
+.fuzzies {
+  position: absolute;
+  top: 50px;
+  width: 420px;
+}
+
+.fuzzy {
+  border-bottom: solid gray 1px;
+}
+
+.fuzzy-img {
+  width: 100%;
+}
+
+.fuzzy-text {
+  padding: 12px 0px;
+}
