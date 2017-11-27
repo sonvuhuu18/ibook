@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20171106132048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comment_id"
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
