@@ -1,7 +1,7 @@
 <div class="content-inside">
 <!--<p id="notice"><%= notice %></p>-->
 
-<h1>Books</h1>
+<h1><%= t("books.books")%></h1>
 
 <div class="row">
     <% @books.each do |book| %>
@@ -10,4 +10,4 @@
 </div>
 
 </div>
-<div class="action-panel transparent-white eighty-percent"><a href="/books/new" class="btn btn-primary float-right"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;New Book</a></div>
+<div class="action-panel transparent-white eighty-percent"><a href="/books/new" class="btn btn-primary float-right"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;<%= t("books.new")%></a></div>

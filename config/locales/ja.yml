@@ -20,7 +20,7 @@ ja:
     synopsis: "概要:"
     link_to_amazon: "Amazonへのリンク"
     rating: "レーティング:"
-    added_by: "Added by"
+    added_by: "%{user}によって追加されました"
     edit: "編集"
     remove: "削除"
     reviews: "レビュー"

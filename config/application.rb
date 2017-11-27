@@ -27,10 +27,10 @@ module Ibook
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    
+
     # Enable gzip compression for http request
     config.middleware.use Rack::Deflater
-    
-    config.i18n.default_locale = :ja
+
+    config.i18n.default_locale = :en
   end
 end

@@ -1,4 +1,4 @@
 <%= form_for user, url: {action: "ban_or_unban"} do |f| %>
   <%= f.hidden_field :is_banned, value: true %>
-  <%= f.submit "Ban this user", class: "btn btn-outline-danger" %>
+  <%= f.submit t("user.ban"), class: "btn btn-outline-danger" %>
 <% end %>
