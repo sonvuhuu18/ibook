@@ -26,6 +26,8 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'config'
 gem 'acts_as_commentable_with_threading'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
